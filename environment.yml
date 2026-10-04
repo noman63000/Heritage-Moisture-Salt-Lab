@@ -1,0 +1,10 @@
+name: heritage-moisture-salt-lab
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy=2.3.5
+  - scipy=1.17.0
+  - pandas=2.2.3
+  - openpyxl=3.1.5
+  - pip

@@ -1,0 +1,35 @@
+ANALYSISBRIDGE 1.2 SCIENTIFIC OUTPUT GUIDE
+==========================================
+
+HOURLY_RUN_STATS.csv
+  One row per detected run. Includes mean, SD, min, max and approximate p01/p05/p50/p95/p99 for key numeric variables.
+
+HOURLY_MONTHLY_STATS.csv / HOURLY_SEASONAL_STATS.csv
+  Compact temporal summaries suitable for climate/scenario comparison.
+
+HOURLY_EXTREME_EVENTS.csv
+  Exact top/bottom source-row values with timestamps for each key variable and run.
+
+HOURLY_THRESHOLD_COUNTS.csv / HOURLY_TOP_THRESHOLD_SPELLS.csv
+  Counts and longest spells for inferred Celsius temperatures, precipitation, and ice/freezing variables.
+
+HOURLY_DAILY_REDUCTION.csv
+  Daily compact representation derived directly from the hourly stream.
+
+WETTING_DRYING_CYCLES.csv
+  Moisture-cycle diagnostics based on daily means and a data-adaptive amplitude threshold.
+
+RAIN_RESPONSE_EVENTS.csv
+  Response of moisture/sulfate/temperature metrics 1, 3 and 7 days after the largest detected rain events.
+
+MATCHED_DURATION_RUN_SUMMARY.csv
+  Compares all runs over the same number of days as the historical/ERA baseline when one is detected.
+
+MATCHED_DURATION_ENSEMBLE_SUMMARY.csv
+  Groups duration-matched runs by scenario/period for ensemble-level comparison.
+
+MATCHED_DURATION_CHANGE_VS_BASELINE.csv
+  Absolute and percentage change in matched-period means and maxima relative to the detected baseline.
+
+SCIENTIFIC_REDUCTION_REPORT.json / *_SCHEMA.json
+  Machine-readable audit of what was inferred, how many rows were streamed, and which source columns were used.

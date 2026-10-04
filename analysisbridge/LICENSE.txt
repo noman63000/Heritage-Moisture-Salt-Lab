@@ -1,0 +1,1 @@
+AnalysisBridge is provided for the user's own local data-processing workflow. You may modify and use it for your own work.

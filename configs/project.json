@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "site_id": "mohenjo_daro",
+  "site_name": "Mohenjo-daro",
+  "site_latitude": 27.3,
+  "site_longitude": 68.1,
+  "input_selection": "Model Input Set v1.0; original workbook retained without modification",
+  "implementation_scope": "Reduced 1-D vertical, thickness-averaged transport; not a 2-D damage model",
+  "material_file": "materials/18_15_IBEET_3.m6",
+  "material_source": "https://zenodo.org/records/5656966",
+  "require_material_identity": "18_15",
+  "retention_branch": "de",
+  "material_reviewed": false,
+  "geometry": {
+    "height_m": 1.5,
+    "thickness_m": 0.279,
+    "cells": 200,
+    "exposed_faces": 2
+  },
+  "surface": {
+    "emissivity": 0.944,
+    "absorptivity": 0.73,
+    "solar_projection_factor": 0.5,
+    "sky_view_factor": 0.5,
+    "rain_catch_fraction": 0.05,
+    "crown_rain": true
+  },
+  "boundary": {
+    "capillary_supply_mm_day": 0.2,
+    "sulfate_source_mg_L": 80.4,
+    "reviewed": false,
+    "provenance": "Supply and geometry are illustrative choices, NOT site measurements. Sulfate 80.4 mg/L is the regional Dokri mean, not a site sample. Review every boundary and exposure choice."
+  },
+  "salt": {
+    "D_sulfate_m2_s": 2.91e-10,
+    "diffusion_convention": "pore",
+    "unsaturated_exponent": 0,
+    "solubility_file": null,
+    "initial_sulfate_mol_m3_bulk": 0,
+    "provenance": "Na2SO4 binary proxy from locked workbook. Pore vs bulk convention must be reviewed; dry/saturated mapping is an implementation assumption. No phase model is supplied."
+  },
+  "initial": {
+    "RH_pct": 70,
+    "temperature_C": 25
+  },
+  "numerics": {
+    "max_step_s": 1800,
+    "rtol": 1e-06,
+    "chunk_hours": 24,
+    "spinup_max_cycles": 5,
+    "spinup_theta_tolerance": 0.0001,
+    "spinup_temperature_tolerance_C": 0.05,
+    "qa_relative_tolerance": 0.05
+  },
+  "review": {
+    "geometry_boundary_approved": true,
+    "diffusion_convention_approved": true,
+    "reduced_scope_approved": true
+  },
+  "is_demo": false,
+  "runs": [
+    {
+      "id": "R00",
+      "model": "ERA5-Land",
+      "scenario": "historical",
+      "period": "2010-2023",
+      "calendar": "Gregorian",
+      "file": "climate/Mohenjo_daro_ERA5Land_2010_2023_hourly_model_ready.csv.gz",
+      "expected_sha256": "ba4a600d70e3912a124f80c52c057c5772d3243540ff060a34e0d23f9ca14c8f"
+    },
+    {
+      "id": "R01",
+      "model": "ACCESS-CM2",
+      "scenario": "ssp245",
+      "period": "2040-2060",
+      "calendar": "proleptic_gregorian",
+      "file": "climate/Mohenjo_daro_hourly_ACCESS-CM2_ssp245_2040-2060.csv.gz",
+      "expected_sha256": "93e59fe6cba3f6e5364b3fb35610db3d9ea7f84fc73495da4bb03a61bab08ace"
+    },
+    {
+      "id": "R02",
+      "model": "ACCESS-CM2",
+      "scenario": "ssp245",
+      "period": "2080-2100",
+      "calendar": "proleptic_gregorian",
+      "file": "climate/Mohenjo_daro_hourly_ACCESS-CM2_ssp245_2080-2100.csv.gz",
+      "expected_sha256": "10f9a6e072321937fe59746c4a696e2f997231b166366e109359071111997cf1"
+    },
+    {
+      "id": "R03",
+      "model": "ACCESS-CM2",
+      "scenario": "ssp585",
+      "period": "2040-2060",
+      "calendar": "proleptic_gregorian",
+      "file": "climate/Mohenjo_daro_hourly_ACCESS-CM2_ssp585_2040-2060.csv.gz",
+      "expected_sha256": "5e664c0a7bf397fddf13d9aee2eeb309dd147e385090efc3eccbe76b04b2d35b"
+    },
+    {
+      "id": "R04",
+      "model": "ACCESS-CM2",
+      "scenario": "ssp585",
+      "period": "2080-2100",
+      "calendar": "proleptic_gregorian",
+      "file": "climate/Mohenjo_daro_hourly_ACCESS-CM2_ssp585_2080-2100.csv.gz",
+      "expected_sha256": "6c70f7853153d58497644f0a62c4f318dc095f5357cba577086e660f6c16ad57"
+    },
+    {
+      "id": "R05",
+      "model": "CanESM5",
+      "scenario": "ssp245",
+      "period": "2040-2060",
+      "calendar": "365_day",
+      "file": "climate/Mohenjo_daro_hourly_CanESM5_ssp245_2040-2060.csv.gz",
+      "expected_sha256": "32613bc25350818299452f91331f5eed94eb940edadaf385613ea930406a426b"
+    },
+    {
+      "id": "R06",
+      "model": "CanESM5",
+      "scenario": "ssp245",
+      "period": "2080-2100",
+      "calendar": "365_day",
+      "file": "climate/Mohenjo_daro_hourly_CanESM5_ssp245_2080-2100.csv.gz",
+      "expected_sha256": "f86d68a794ece787490cf6f0d9379c47bb764a9ee1786a37fa599a3b78aae67e"
+    },
+    {
+      "id": "R07",
+      "model": "CanESM5",
+      "scenario": "ssp585",
+      "period": "2040-2060",
+      "calendar": "365_day",
+      "file": "climate/Mohenjo_daro_hourly_CanESM5_ssp585_2040-2060.csv.gz",
+      "expected_sha256": "21c37b5d8c7e5441609db01636110ac56b53717e211266ab0b24c3dba0750101"
+    },
+    {
+      "id": "R08",
+      "model": "CanESM5",
+      "scenario": "ssp585",
+      "period": "2080-2100",
+      "calendar": "365_day",
+      "file": "climate/Mohenjo_daro_hourly_CanESM5_ssp585_2080-2100.csv.gz",
+      "expected_sha256": "72f02db43cc83665db4c993b5126d3f028b05ad5a3a1c92d16a2da8d0ae73ba9"
+    },
+    {
+      "id": "R09",
+      "model": "IPSL-CM6A-LR",
+      "scenario": "ssp245",
+      "period": "2040-2060",
+      "calendar": "standard",
+      "file": "climate/Mohenjo_daro_hourly_IPSL-CM6A-LR_ssp245_2040-2060.csv.gz",
+      "expected_sha256": "9156cb23dc287135093dac571c2c4b02da8436c50b4e58543a44d0700c70c38b"
+    },
+    {
+      "id": "R10",
+      "model": "IPSL-CM6A-LR",
+      "scenario": "ssp245",
+      "period": "2080-2100",
+      "calendar": "standard",
+      "file": "climate/Mohenjo_daro_hourly_IPSL-CM6A-LR_ssp245_2080-2100.csv.gz",
+      "expected_sha256": "be2a6141bd6597d8ed95c4d48155c1973ece86c4f77784a0acce44e292405da4"
+    },
+    {
+      "id": "R11",
+      "model": "IPSL-CM6A-LR",
+      "scenario": "ssp585",
+      "period": "2040-2060",
+      "calendar": "standard",
+      "file": "climate/Mohenjo_daro_hourly_IPSL-CM6A-LR_ssp585_2040-2060.csv.gz",
+      "expected_sha256": "3f207ebb6a0109ee5aaece73ff738f09c95746065c7a89b38784a47cc37ad58a"
+    },
+    {
+      "id": "R12",
+      "model": "IPSL-CM6A-LR",
+      "scenario": "ssp585",
+      "period": "2080-2100",
+      "calendar": "standard",
+      "file": "climate/Mohenjo_daro_hourly_IPSL-CM6A-LR_ssp585_2080-2100.csv.gz",
+      "expected_sha256": "f97a703c3e9ca81225a47d9c12d7d04d4baa55482427891475192f1b1028dc74"
+    },
+    {
+      "id": "R13",
+      "model": "MPI-ESM1-2-HR",
+      "scenario": "ssp245",
+      "period": "2040-2060",
+      "calendar": "proleptic_gregorian",
+      "file": "climate/Mohenjo_daro_hourly_MPI-ESM1-2-HR_ssp245_2040-2060.csv.gz",
+      "expected_sha256": "7ace10d641c7ced75712d12d215a5acf0578c1146f88a66ba8214a4b0c81234e"
+    },
+    {
+      "id": "R14",
+      "model": "MPI-ESM1-2-HR",
+      "scenario": "ssp245",
+      "period": "2080-2100",
+      "calendar": "proleptic_gregorian",
+      "file": "climate/Mohenjo_daro_hourly_MPI-ESM1-2-HR_ssp245_2080-2100.csv.gz",
+      "expected_sha256": "381624d11cceaf35fcf143a39ee04c30318bef2920ee8221c173a90d93f03036"
+    },
+    {
+      "id": "R15",
+      "model": "MPI-ESM1-2-HR",
+      "scenario": "ssp585",
+      "period": "2040-2060",
+      "calendar": "proleptic_gregorian",
+      "file": "climate/Mohenjo_daro_hourly_MPI-ESM1-2-HR_ssp585_2040-2060.csv.gz",
+      "expected_sha256": "73581e62a5ee145a2da909f78bb00c75a7fee35a4b6b12adc1ffbebe792cb854"
+    },
+    {
+      "id": "R16",
+      "model": "MPI-ESM1-2-HR",
+      "scenario": "ssp585",
+      "period": "2080-2100",
+      "calendar": "proleptic_gregorian",
+      "file": "climate/Mohenjo_daro_hourly_MPI-ESM1-2-HR_ssp585_2080-2100.csv.gz",
+      "expected_sha256": "69d01dac845e0973e645998c7101c4636bed89049b9c2a55a2f8d9c769e449ef"
+    },
+    {
+      "id": "R17",
+      "model": "MRI-ESM2-0",
+      "scenario": "ssp245",
+      "period": "2040-2060",
+      "calendar": "proleptic_gregorian",
+      "file": "climate/Mohenjo_daro_hourly_MRI-ESM2-0_ssp245_2040-2060.csv.gz",
+      "expected_sha256": "eaaf3790bcc031e5678e953c826c9350439f3fe65e06abf86b04969f3b695f04"
+    },
+    {
+      "id": "R18",
+      "model": "MRI-ESM2-0",
+      "scenario": "ssp245",
+      "period": "2080-2100",
+      "calendar": "proleptic_gregorian",
+      "file": "climate/Mohenjo_daro_hourly_MRI-ESM2-0_ssp245_2080-2100.csv.gz",
+      "expected_sha256": "e75611eab3a22f5782b9a45010c023fe4c8b951fcad49dad47837ce579827b08"
+    },
+    {
+      "id": "R19",
+      "model": "MRI-ESM2-0",
+      "scenario": "ssp585",
+      "period": "2040-2060",
+      "calendar": "proleptic_gregorian",
+      "file": "climate/Mohenjo_daro_hourly_MRI-ESM2-0_ssp585_2040-2060.csv.gz",
+      "expected_sha256": "bf741fcd294bf0ff8c15bd547698119729a1eb51838e8953550dad50eb37a8fc"
+    },
+    {
+      "id": "R20",
+      "model": "MRI-ESM2-0",
+      "scenario": "ssp585",
+      "period": "2080-2100",
+      "calendar": "proleptic_gregorian",
+      "file": "climate/Mohenjo_daro_hourly_MRI-ESM2-0_ssp585_2080-2100.csv.gz",
+      "expected_sha256": "3345042692755d19b33f20239ac2701679ad8960d7c11be185cf8dbcfcfdb93a"
+    }
+  ]
+}

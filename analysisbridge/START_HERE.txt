@@ -1,0 +1,16 @@
+AnalysisBridge 1.2.0 - START HERE
+=================================
+
+1. Double-click: run_analysis_bridge.bat
+2. Add the ORIGINAL raw result ZIP or folder. Do NOT manually extract model/result ZIPs.
+3. Keep "Scientific reduction of large .csv.gz outputs" checked.
+4. Click "Build Analysis Packs".
+5. Open the generated CHATGPT_UPLOAD folder.
+6. Upload ANALYSIS_INDEX.zip first.
+7. Then upload ANALYSIS_PACK_001.zip, 002, 003, etc. if present.
+
+For the Mohenjo-daro results, point the app at the original large final-results ZIP/folder.
+Version 1.2 will read MASTER_HOURLY_KEY_METRICS.csv.gz directly and create compact
+scientific derivatives, so the huge hourly file itself does not need to be uploaded.
+
+To build a standalone Windows executable, double-click build_windows_exe.bat.

@@ -1,0 +1,18 @@
+{
+  "benchmark": "HAMSTAD Benchmark 2 adapter",
+  "geometry_m": 0.2,
+  "cells": 200,
+  "dx_m": 0.001,
+  "D_w_m2_s": 6e-10,
+  "initial_RH": 0.95,
+  "exterior_RH": 0.45,
+  "interior_RH": 0.65,
+  "initial_w_kg_m3": 84.768696570041,
+  "exterior_w_kg_m3": 19.535618634081207,
+  "interior_w_kg_m3": 30.505935443398815,
+  "solver": "SciPy BDF",
+  "rtol": 3e-08,
+  "atol": 1e-09,
+  "max_step_s": 1800,
+  "scope": "Benchmark-specific slab/Dirichlet adapter uses the production core finite-volume divergence and BDF integration pattern; it does not test the Mohenjo-daro thickness-averaged distributed exposure boundary."
+}

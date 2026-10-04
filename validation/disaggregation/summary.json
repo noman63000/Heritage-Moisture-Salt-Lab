@@ -1,0 +1,30 @@
+{
+  "precipitation": {
+    "daily_total_rmse_mm": 7.700509709290068e-16,
+    "wet_day_count": 741,
+    "wet_hours_per_wet_day_obs_mean": 3.913630229419703,
+    "wet_hours_per_wet_day_pred_mean": 3.2847503373819165,
+    "wet_hours_per_wet_day_mae": 1.9190283400809716,
+    "hourly_wet_frequency_obs_pct": 2.363257057174523,
+    "hourly_wet_frequency_pred_pct": 1.983506095573375,
+    "hourly_p95_wet_obs": 3.9128816499999712,
+    "hourly_p95_wet_pred": 5.152285270415964,
+    "hourly_p99_wet_obs": 7.016354669999996,
+    "hourly_p99_wet_pred": 12.437186950346621,
+    "hourly_max_obs": 11.797324,
+    "hourly_max_pred": 44.16230279918196
+  },
+  "extremes": {
+    "tas_hours_gt40_obs": 8932,
+    "tas_hours_gt40_pred": 9051,
+    "tas_hours_gt45_obs": 834,
+    "tas_hours_gt45_pred": 859,
+    "rh_hours_gt80_obs": 9777,
+    "rh_hours_gt80_pred": 9923,
+    "rsds_hours_gt800_obs": 9661,
+    "rsds_hours_gt800_pred": 9593
+  },
+  "days": 5113,
+  "hours": 122712,
+  "method": "leave-one-year-out cross-validation; daily ERA5 targets reconstructed from analog days in other years only"
+}

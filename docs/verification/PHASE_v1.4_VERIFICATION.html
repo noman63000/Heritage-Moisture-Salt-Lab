@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Heritage Lab 1.4.0 Freeze/Thaw Resume - Verification</title>
+<style>body{margin:0;background:#f3f7f5;color:#17353c;font:16px/1.62 system-ui,Segoe UI,sans-serif}main{max-width:1050px;margin:auto;padding:38px 28px 70px}h1{font-size:34px;line-height:1.15}h2{margin-top:34px;color:#08786b}.box{background:#fff;border:1px solid #d2e1db;padding:20px 24px;border-radius:10px;margin:18px 0}.good{background:#e7f5ed;border-left:5px solid #08786b;padding:16px 20px}.warn{background:#fff4df;border-left:5px solid #ae7823;padding:16px 20px}.bad{background:#fcedeb;border-left:5px solid #a94a3d;padding:16px 20px}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;vertical-align:top;padding:10px 11px;border-bottom:1px solid #dce6e2}th{background:#eaf2ef}code{background:#e7eeeb;padding:2px 5px;overflow-wrap:anywhere}li{margin:8px 0}small{color:#60756e}</style>
+<main>
+<small>HERITAGE MOISTURE &amp; SALT LAB / PERFORMANCE ADD-ON 1.4.0</small>
+<h1>Equilibrium Freeze/Thaw Extension + Resume<br>Verification report</h1>
+<div class="good"><b>Purpose.</b> Preserve the 17 already completed cases and the four committed partial cases, while extending only phase-active cold states with an equilibrium liquid/ice partition and fusion latent heat. The original <code>hmsl</code> scientific-core files remain byte-identical.</div>
+
+<h2>1. What this update changes</h2>
+<div class="box"><p>The 1.4 execution adapter treats the existing water state as <b>total condensable water expressed as liquid-water-equivalent volumetric content</b>. When the source retention curve and temperature imply an equilibrium ice fraction, total water is partitioned algebraically into mobile liquid and immobile ice-equivalent water. Liquid-only moisture/salt transport is then solved with fusion latent heat in the energy balance. Transported Na2SO4-equivalent salt remains in the liquid phase, so freezing concentrates the dissolved-equivalent salt.</p><p>Whenever no equilibrium ice is present, the adapter calls the original derivative implementation verbatim. Existing completed cases are skipped rather than recalculated.</p></div>
+<div class="warn"><b>This is not a frost-damage model.</b> It does not model ice-pressure damage, pore expansion mechanics, nucleation/supercooling hysteresis, a snow layer, or mixed-electrolyte activity. Salt freezing-point depression is not credited. The declared phase-extension temperature floor remains -20 C.</div>
+
+<h2>2. Saved-work semantics</h2>
+<table><tr><th>Existing state</th><th>1.4 behavior</th></tr>
+<tr><td>17 completed cases</td><td>Verified and retained; not recomputed.</td></tr>
+<tr><td>R14/R17/R18/R20 legacy 1.3 partial checkpoint</td><td>Resume from the committed saved hour. At the first 1.4 migration, the retained 1.3 <code>theta</code> is valid as total water because 1.3 committed only the previously accepted liquid-stable prefix.</td></tr>
+<tr><td>After a 1.4 phase-enabled checkpoint is committed</td><td><b>Do not downgrade that unfinished case to 1.3.</b> Its checkpoint <code>theta</code> now represents total condensable water; the 1.4 adapter partitions the mobile liquid fraction.</td></tr></table>
+
+<h2>3. Executed implementation checks</h2>
+<table><tr><th>Check</th><th>Observed result</th></tr>
+<tr><td>Warm/no-ice identity: R00 first 24 h</td><td><b>PASS.</b> Final state bit-for-bit identical to the original ColumnModel; maximum absolute difference 0.</td></tr>
+<tr><td>R14 representative cold 288 h window</td><td><b>PASS.</b> Completed with 3 phase-active hours; maximum ice-water-equivalent theta 0.0063896 m3/m3; minimum material temperature -4.046 C. Maximum water closure error 3.17e-15 kg/m2; sulfate closure 4.34e-18 mol/m2.</td></tr>
+<tr><td>R14 interrupted/resumed equivalence</td><td><b>PASS.</b> 288 h uninterrupted final state and 144 h + resumed 144 h final state were bit-for-bit identical.</td></tr>
+<tr><td>Representative R17, R18, R20 cold windows</td><td><b>PASS.</b> Each 288 h window completed with negligible mass-closure residuals. These short seed-state windows did not require ice partitioning; the actual user checkpoints may differ.</td></tr>
+<tr><td>Salt exclusion unit check</td><td><b>PASS.</b> At total theta 0.025 m3/m3 and -4 C, equilibrium ice formed and the liquid salt concentration rose from the all-liquid reference 4.0 to 5.614 mol/m3 liquid.</td></tr>
+<tr><td>Declared phase temperature floor</td><td><b>PASS.</b> A material state below -20 C remains a scope error rather than being forced through.</td></tr>
+<tr><td>Original scientific-core regression suite</td><td><b>76 tests passed, 0 failed.</b> See <code>verification/core_regression_v14.log</code>.</td></tr>
+<tr><td>Backup-first installer fixture</td><td><b>PASS.</b> Payload verification, full project backup, unchanged project byte, unchanged core, 1.4.0 receipt, phase module installation and fast launcher installation were verified in a minimal fixture.</td></tr>
+</table>
+
+<h2>4. Numerical phase-event check</h2>
+<p>A short R14 phase-event test compared 200 cells against 400 cells and the base internal maximum step against a halved step. Halving the timestep produced zero difference for the checked metrics. The 200-vs-400 mesh comparison gave approximately 0.089% relative difference in final water, 0.000074% in final salt, and 0.041% in final mean temperature. Peak integrated ice-water amount differed by approximately <b>7.7%</b>.</p>
+<div class="warn"><b>Interpretation:</b> the transport/temperature quantities were strongly converged in this event test, but ice amount is more mesh-sensitive. The phase extension is suitable for continuing the moisture/heat/salt experiment and recording phase occurrence, but ice quantity should be treated as a diagnostic, not as a high-precision ice-mass or frost-damage prediction. The original 5% liquid-model QA is not silently re-labelled as a passed 5% phase-ice QA.</div>
+
+<h2>5. Scientific basis</h2>
+<div class="box"><p>The implementation follows the general thermodynamic-equilibrium treatment of freezing/thawing in porous building materials described by Matsumoto et al. (2001), while the liquid/ice vapour-pressure relationship uses Murphy &amp; Koop (2005). IAPWS ice and supercooled-water formulations are retained as reference sources for the thermodynamic scope.</p>
+<ul><li>Matsumoto M., Hokoi S., Hatano M. (2001), <i>Building and Environment</i> 36:733-742. DOI: 10.1016/S0360-1323(00)00066-4.</li><li>Murphy D.M., Koop T. (2005), <i>Quarterly Journal of the Royal Meteorological Society</i> 131:1539-1565. DOI: 10.1256/qj.04.94.</li><li>IAPWS, Revised Release on the Equation of State 2006 for H2O Ice Ih (2009 revision).</li><li>IAPWS, Guideline on Thermodynamic Properties of Supercooled Water.</li></ul></div>
+
+<h2>6. What has not been certified here</h2>
+<div class="bad"><p><b>The user's exact long-run R14, R17, R18 and R20 checkpoint states were not available in this build environment.</b> Therefore this report does not claim that all four full remaining multi-decade runs have already completed. The installer/worker is designed to resume those exact checkpoints on the user's machine and preserve their committed work.</p><p>Native Windows execution was not available in the build environment. The Windows launcher/installer is supplied and uses the same backup-first safeguards as earlier add-ons.</p></div>
+
+<h2>7. Installation safety</h2>
+<ol><li>Pause/close all running Heritage Lab workers before installation.</li><li>The installer verifies the original scientific-core hashes and the update payload.</li><li>It creates and verifies a full project backup before replacing only the execution add-on/launcher.</li><li>After launch, confirm the 17 completed cases are still COMPLETED and R14/R17/R18/R20 retain their nonzero saved hours before starting.</li></ol>
+<p><b>Bottom line:</b> 1.4 is a real cold-phase equation extension, not a disabled guard or forced PASS. It is deliberately structured to preserve completed work, resume compatible checkpoints, conserve water/salt, and disclose the added phase assumptions.</p>
+</main></html>

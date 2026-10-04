@@ -1,0 +1,21 @@
+<!doctype html><meta charset="utf-8"><title>Heritage Lab 1.2.1 verification</title>
+<style>body{max-width:940px;margin:38px auto;padding:0 20px;font:15px/1.55 system-ui;color:#17333c}h1,h2{color:#087b70}.good{background:#eaf6f0;border:1px solid #b8ddd5;padding:14px 18px;border-radius:8px}.note{background:#fff7e8;border:1px solid #ead9b6;padding:14px 18px;border-radius:8px}code{background:#edf3f2;padding:2px 5px}table{border-collapse:collapse;width:100%}th,td{padding:8px 10px;border-bottom:1px solid #dbe5e4;text-align:left}</style>
+<h1>Heritage Moisture &amp; Salt Lab 1.2.1 — overnight preparation verification</h1>
+<div class="good"><b>Purpose:</b> make the unattended preparation workflow unambiguous in the dashboard. The single overnight button visibly performs Numerical QA for selected cases → shared R00 water/heat spin-up → Freeze reduced inputs.</div>
+<h2>What changed</h2>
+<ul><li>The Run &amp; check page now shows the three automatic stages as 1/3, 2/3 and 3/3.</li><li>The primary button is labelled <b>Run QA → Spin-up → Freeze overnight</b>.</li><li>The page explicitly states that the manual Spin-up and Freeze buttons do not need to be pressed after the overnight queue starts.</li><li>The morning summary separately displays QA PASS/FAIL counts (including failed case IDs), spin-up status, and freeze status.</li><li>Final job messaging explicitly reports all three stages.</li></ul>
+<h2>What did not change</h2>
+<p>The scientific 1.2.0 implementation files used in the project physics hash—<code>solver.py</code>, <code>material.py</code>, <code>face_integral.py</code>, <code>climate.py</code>, <code>workflow.py</code>, <code>project.py</code> and <code>common.py</code>—are not modified by this update. The installer refuses to proceed if those target files do not match the tested 1.2.0 release.</p>
+<p>Therefore this update does not change material functions, physical settings, numerical water-face method, QA threshold, spin-up equations or climate data. Existing valid QA/spin-up/freeze controls are preserved byte-for-byte.</p>
+<h2>Checks performed</h2>
+<table><tr><th>Check</th><th>Result</th></tr>
+<tr><td>Python regression suite on full 1.2.0 application plus 1.2.1 changes</td><td><b>78 tests passed</b></td></tr>
+<tr><td>Dedicated queue test: QA R03 → QA R04 failure → QA R05 → automatic R00 spin-up → automatic freeze</td><td><b>PASS</b></td></tr>
+<tr><td>Dashboard JavaScript syntax</td><td><b>PASS</b></td></tr>
+<tr><td>Local HTTP startup and dashboard version text</td><td><b>PASS</b></td></tr>
+<tr><td>Installer on a 1.2.0 application copy</td><td><b>PASS</b></td></tr>
+<tr><td>Representative existing QA/spin-up/freeze/prep controls preserved after installer</td><td><b>PASS</b> (byte-for-byte)</td></tr>
+</table>
+<div class="note"><b>Windows note:</b> the installer logic was tested in the available Linux environment against a Windows-style application folder layout. Native Windows GUI execution is not available in this environment. No new Python dependencies are introduced.</div>
+<h2>Expected overnight behavior</h2>
+<ol><li>Select one or many R00–R20 cases.</li><li>Click <b>Run QA → Spin-up → Freeze overnight</b>.</li><li>Each selected case is QA-tested sequentially. A case-specific failure is saved and the queue continues.</li><li>After the QA sweep, one shared R00 water/heat spin-up is run or reused automatically.</li><li>Freeze is attempted automatically when its prerequisites are satisfied.</li><li><code>prep_queue.json</code> and the dashboard summary show the final three-stage status.</li></ol>
