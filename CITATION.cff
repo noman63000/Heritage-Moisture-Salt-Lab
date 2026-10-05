@@ -1,19 +1,43 @@
 cff-version: 1.2.0
-message: "If you use this software or its reproducibility workflow, please cite the archived software release and the associated article."
+message: "If you use this software, please cite it using the metadata below."
+
 title: "Heritage Moisture & Salt Lab"
-type: software
+version: "1.5.0"
+
 authors:
   - family-names: "Akhtar"
     given-names: "Muhammad Nouman"
- orcid: "https://orcid.org/0000-0002-3367-1607"
-version: "1.5.0"
-date-released: "2026-10-04"
+    orcid: "https://orcid.org/0000-0002-3367-1607"
+
 repository-code: "https://github.com/noman63000/Heritage-Moisture-Salt-Lab"
+
 license: "MIT"
+
 keywords:
-  - cultural heritage
-  - hygrothermal modelling
-  - sulfate transport
-  - climate change
-  - CMIP6
-  - Mohenjo-daro
+  - "heritage science"
+  - "hygrothermal modelling"
+  - "moisture transport"
+  - "sulfate transport"
+  - "archaeological conservation"
+  - "climate change"
+  - "CMIP6"
+  - "Mohenjo-daro"
+  - "reproducible research"
+
+abstract: >-
+  Heritage Moisture & Salt Lab is a reproducible computational framework
+  for climate-to-material exposure modelling in porous archaeological
+  heritage. The software implements a reduced one-dimensional,
+  thickness-averaged heat, moisture, and dissolved sulfate transport
+  framework for long-duration historical and future climate simulations.
+  The publication release includes the scientific model core,
+  long-duration execution and checkpoint/resume components,
+  AnalysisBridge for scientific output reduction and audit,
+  numerical verification materials, HAMSTAD Benchmark 2 evidence,
+  climate-disaggregation validation, lower-boundary sensitivity analysis,
+  frozen study configuration, and reproducibility documentation.
+  The framework was developed and demonstrated using a 21-case
+  historical and CMIP6 future-climate ensemble for Mohenjo-daro,
+  Pakistan. It is intended for auditable climate-to-material exposure
+  analysis and is not presented as a fully site-calibrated mechanical
+  damage model.
