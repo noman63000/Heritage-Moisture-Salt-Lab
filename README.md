@@ -1,82 +1,180 @@
 # Heritage Moisture & Salt Lab
 
-Reproducible climate-to-material exposure modelling for heat, moisture and dissolved sulfate transport in porous archaeological heritage, developed and demonstrated with a 21-case historical/future climate ensemble for Mohenjo-daro, Pakistan.
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23151541.svg)](https://doi.org/10.5281/zenodo.23151541)
 
-## Scope
+**Heritage Moisture & Salt Lab** is a reproducible computational framework for climate-to-material exposure modelling in porous archaeological heritage.
 
-This repository contains the publication-facing software and verification materials used in the associated Mohenjo-daro study. The scientific model is a reduced one-dimensional, thickness-averaged heat-moisture-Na2SO4-equivalent transport framework. It is designed for auditable multi-decadal scenario experiments rather than as a site-calibrated structural-damage predictor.
+The software implements a reduced one-dimensional, thickness-averaged framework for coupled heat, moisture, and dissolved sulfate transport and is designed for auditable multi-decadal historical and future-climate simulations.
 
-It does **not** claim to resolve mixed-salt thermodynamics, crystallization pressure, cracking, pore clogging, or deterministic material loss. The Mohenjo-daro application uses a literature-derived historic-brick material proxy and explicit lower-boundary scenario assumptions; these limitations are part of the study design and are reported in the manuscript.
+The framework was developed and demonstrated through a 21-case climate ensemble for **Mohenjo-daro, Pakistan**, comprising one historical ERA5-Land case and twenty future NEX-GDDP-CMIP6 simulations.
 
-## Publication release
+---
 
-Repository publication bundle: **v1.5.0**.
+## Software DOI
 
-The bundle consolidates the exact component lineages used in the study:
+The publication release **v1.5.0** is permanently archived on Zenodo:
 
-- Heritage Moisture & Salt Lab scientific core: v1.2.0, with v1.2.1 preparation-interface update;
-- parallel/resumable execution layer from the verified all-cases workflow;
-- final pore-liquid/equilibrium freeze-thaw execution extension (v1.4 lineage);
-- AnalysisBridge v1.2.0 for output audit and scientific reduction.
+**DOI:** [10.5281/zenodo.23151541](https://doi.org/10.5281/zenodo.23151541)
 
-A Zenodo DOI will be added to this README and `CITATION.cff` when the release is archived.
+**GitHub repository:**  
+https://github.com/noman63000/Heritage-Moisture-Salt-Lab
 
-## Repository map
+**Author:** Muhammad Nouman Akhtar  
+**ORCID:** https://orcid.org/0000-0002-3367-1607
 
-- `src/hmsl/` - heat, moisture, sulfate, material, climate, project and workflow scientific core.
-- `app/` - local application/server and browser interface.
-- `execution/hlab_performance/` - long-run worker, checkpoint/resume, safety, cold-state and phase-extension modules.
-- `analysisbridge/` - AnalysisBridge v1.2.0 scientific reduction/audit tool.
-- `tests/` - core and phase-extension regression tests.
-- `benchmarks/HAMSTAD_Benchmark_2/` - standardized HAMSTAD Benchmark 2 adapter, reference comparison outputs and summary.
-- `validation/disaggregation/` - leave-one-year-out validation of the daily-to-hourly climate reconstruction workflow.
-- `validation/boundary_sensitivity/` - lower-boundary sensitivity calculations used in the paper.
-- `validation/event_consistency/` - independent historical-event consistency evidence.
-- `configs/` - frozen Mohenjo-daro configuration, locked input workbook and exact historic-brick material file used by the study.
-- `climate_processing/` - author-developed future daily-to-hourly forcing preparation scripts.
-- `data_manifests/` - source identities, climate-forcing QA and period summaries. Large climate and simulation data are not stored in GitHub.
-- `docs/` - methods, testing documentation, source-data links and verification reports.
+---
 
-## Installation
+## Scientific scope
 
-Python 3.11 was used for the production study. A reproducible dependency set is provided in `requirements.txt` and `environment.yml`.
+Heritage Moisture & Salt Lab provides an auditable climate-to-material modelling workflow for investigating how long-term climatic forcing can modify:
 
-With Conda:
+- material temperature;
+- thermal-extreme exposure;
+- moisture state;
+- water transport;
+- dissolved sulfate transport;
+- near-surface sulfate concentration;
+- sulfate redistribution with depth;
+- water and sulfate mass balances;
+- seasonal exposure behaviour;
+- cold-state and pore-water/ice phase conditions;
+- differences between historical and future climate scenarios.
 
-```bash
-conda env create -f environment.yml
-conda activate heritage-moisture-salt-lab
-```
+The production implementation is a **reduced 1-D vertical, thickness-averaged transport framework**.
 
-Or with a Python virtual environment:
+It is intended primarily for:
 
-```bash
-python -m venv .venv
-# Windows: .venv\Scripts\activate
-# Linux/macOS: source .venv/bin/activate
-pip install -r requirements.txt
-```
+- heritage-science research;
+- archaeological conservation studies;
+- climate-change exposure assessment;
+- long-duration scenario modelling;
+- reproducible computational experiments;
+- numerical verification and sensitivity analysis.
 
-## Verification
+---
 
-The study used staged numerical and software verification, including mesh and maximum-step checks, common historical spin-up, wet-end stress tests, water/sulfate conservation ledgers, regression tests, extreme forcing windows and cold/phase checks.
+## What the software does not claim
 
-A standardized HAMSTAD Benchmark 2 adapter is included under `benchmarks/HAMSTAD_Benchmark_2/`. It verifies the conservative finite-volume/BDF moisture numerical pattern against the benchmark analytical solution; it does not constitute site-specific validation of the Mohenjo-daro material or boundaries.
+The software should **not** be interpreted as a fully calibrated predictive digital twin of Mohenjo-daro.
 
-## Climate forcing and large data
+The present publication version does not explicitly resolve:
 
-Original ERA5-Land and NASA NEX-GDDP-CMIP6 products are external datasets and are credited to their respective producers. This repository includes processing code and exact manifests/QA records, not a duplicate of every large external source file.
+- mixed-electrolyte thermodynamics;
+- separate ionic transport for all individual salts;
+- cation exchange;
+- crystallization pressure;
+- pore clogging;
+- mechanically induced cracking;
+- material loss;
+- nucleation or supercooling hysteresis;
+- detailed frost-damage mechanics;
+- snow accumulation;
+- groundwater-flow dynamics;
+- deterministic conservation-damage prediction.
 
-The full R00-R20 processed research dataset and large simulation outputs are intended for a separate persistent data archive. The software DOI and data DOI will be cross-linked in the publication record.
+The Mohenjo-daro application therefore reports **material exposure and transport behaviour**, rather than direct prediction of physical damage.
 
-## Reproducibility boundaries
+---
 
-The repository supports reproducibility of the implemented computational workflow. It should not be interpreted as evidence of full predictive validation at Mohenjo-daro. Site-specific archaeological brick functions, time-resolved internal moisture/temperature measurements and mixed-ion chemistry remain important future validation/development needs.
+# Publication release
 
-## Citation
+This repository corresponds to:
 
-GitHub will read citation metadata from `CITATION.cff`. After Zenodo archives release `v1.5.0`, the software DOI should be added there and here before journal submission.
+**Heritage Moisture & Salt Lab v1.5.0**
 
-## License
+The publication bundle consolidates the software lineages used in the Mohenjo-daro study, including:
 
-MIT License. See `LICENSE`.
+- Heritage Moisture & Salt Lab scientific core;
+- numerical updates developed during model verification;
+- production multi-case execution workflow;
+- checkpoint and restart functionality;
+- cold-state stability checks;
+- equilibrium water/ice phase extension;
+- AnalysisBridge v1.2.0;
+- numerical regression tests;
+- standardized benchmark material;
+- climate-disaggregation validation;
+- lower-boundary sensitivity analysis;
+- frozen publication configuration;
+- climate-input manifests and QA records;
+- provenance and reproducibility documentation.
+
+The exact archived publication release is available at:
+
+https://doi.org/10.5281/zenodo.23151541
+
+---
+
+# Repository structure
+
+```text
+Heritage-Moisture-Salt-Lab/
+│
+├── analysisbridge/
+│   └── AnalysisBridge scientific reduction and audit workflow
+│
+├── app/
+│   └── Local application/server and browser-interface components
+│
+├── benchmarks/
+│   └── HAMSTAD_Benchmark_2/
+│       ├── benchmark implementation
+│       ├── analytical/reference solution
+│       └── comparison outputs
+│
+├── climate_processing/
+│   └── Author-developed climate preparation and
+│       daily-to-hourly reconstruction workflows
+│
+├── configs/
+│   ├── frozen Mohenjo-daro publication configuration
+│   ├── locked model input workbook
+│   └── exact material-definition files
+│
+├── data_manifests/
+│   ├── forcing manifests
+│   ├── forcing QA
+│   ├── period summaries
+│   └── source-data identities
+│
+├── docs/
+│   ├── methodology
+│   ├── verification documentation
+│   ├── source-data information
+│   └── testing records
+│
+├── execution/
+│   └── hlab_performance/
+│       ├── long-duration execution
+│       ├── checkpoint/resume
+│       ├── safety checks
+│       ├── cold-state handling
+│       └── phase-extension components
+│
+├── src/
+│   └── hmsl/
+│       ├── heat transport
+│       ├── moisture transport
+│       ├── sulfate transport
+│       ├── material functions
+│       ├── boundary conditions
+│       ├── climate forcing
+│       ├── project configuration
+│       └── workflow components
+│
+├── tests/
+│   └── numerical and software regression tests
+│
+├── validation/
+│   ├── disaggregation/
+│   ├── boundary_sensitivity/
+│   └── event_consistency/
+│
+├── .gitignore
+├── CHANGELOG.md
+├── CITATION.cff
+├── LICENSE
+├── README.md
+├── SHA256SUMS.txt
+├── environment.yml
+└── requirements.txt
