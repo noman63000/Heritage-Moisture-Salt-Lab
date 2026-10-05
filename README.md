@@ -1,32 +1,63 @@
 # Heritage Moisture & Salt Lab
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23151541.svg)](https://doi.org/10.5281/zenodo.23151541)
+[![Software DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23151541.svg)](https://doi.org/10.5281/zenodo.23151541)
+[![Dataset DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23151771.svg)](https://doi.org/10.5281/zenodo.23151771)
 
 **Heritage Moisture & Salt Lab** is a reproducible computational framework for climate-to-material exposure modelling in porous archaeological heritage.
 
 The software implements a reduced one-dimensional, thickness-averaged framework for coupled heat, moisture, and dissolved sulfate transport and is designed for auditable multi-decadal historical and future-climate simulations.
 
-The framework was developed and demonstrated through a 21-case climate ensemble for **Mohenjo-daro, Pakistan**, comprising one historical ERA5-Land case and twenty future NEX-GDDP-CMIP6 simulations.
+The framework was developed and demonstrated through a 21-case historical/future climate ensemble for **Mohenjo-daro, Pakistan**, comprising one historical ERA5-Land simulation and twenty future NEX-GDDP-CMIP6 simulations.
 
 ---
 
-## Software DOI
+# Permanent research records
 
-The publication release **v1.5.0** is permanently archived on Zenodo:
+The software and research dataset associated with the Mohenjo-daro study are permanently archived as separate Zenodo research objects.
 
-**DOI:** [10.5281/zenodo.23151541](https://doi.org/10.5281/zenodo.23151541)
+## Software
 
-**GitHub repository:**  
-https://github.com/noman63000/Heritage-Moisture-Salt-Lab
+**Heritage Moisture & Salt Lab v1.5.0**
 
-**Author:** Muhammad Nouman Akhtar  
-**ORCID:** https://orcid.org/0000-0002-3367-1607
+Zenodo DOI:
+
+**https://doi.org/10.5281/zenodo.23151541**
+
+GitHub repository:
+
+**https://github.com/noman63000/Heritage-Moisture-Salt-Lab**
+
+## Research dataset
+
+**Mohenjo-daro R00–R20 Climate-Material Simulation Dataset v1.0.0**
+
+Zenodo DOI:
+
+**https://doi.org/10.5281/zenodo.23151771**
+
+The dataset contains the complete R00–R20 simulation archive, processed scientific outputs, climate-forcing documentation, frozen inputs, numerical audit records, validation and sensitivity evidence, provenance information, supplementary tables, and complete hourly model outputs.
 
 ---
 
-## Scientific scope
+# Author
 
-Heritage Moisture & Salt Lab provides an auditable climate-to-material modelling workflow for investigating how long-term climatic forcing can modify:
+**Muhammad Nouman Akhtar**
+
+University of Genoa, Italy
+
+ORCID:
+
+**https://orcid.org/0000-0002-3367-1607**
+
+GitHub:
+
+**https://github.com/noman63000**
+
+---
+
+# Scientific scope
+
+Heritage Moisture & Salt Lab provides an auditable climate-to-material modelling workflow for investigating how historical and future climatic forcing can modify:
 
 - material temperature;
 - thermal-extreme exposure;
@@ -49,38 +80,46 @@ It is intended primarily for:
 - climate-change exposure assessment;
 - long-duration scenario modelling;
 - reproducible computational experiments;
-- numerical verification and sensitivity analysis.
+- numerical verification;
+- sensitivity analysis;
+- research-software development;
+- climate-to-material exposure assessment.
 
 ---
 
-## What the software does not claim
+# What the framework does not claim
 
 The software should **not** be interpreted as a fully calibrated predictive digital twin of Mohenjo-daro.
 
 The present publication version does not explicitly resolve:
 
-- mixed-electrolyte thermodynamics;
-- separate ionic transport for all individual salts;
+- complete mixed-electrolyte thermodynamics;
+- separate transport of all individual ionic species;
 - cation exchange;
 - crystallization pressure;
 - pore clogging;
 - mechanically induced cracking;
-- material loss;
-- nucleation or supercooling hysteresis;
+- deterministic material loss;
+- nucleation and supercooling hysteresis;
 - detailed frost-damage mechanics;
 - snow accumulation;
-- groundwater-flow dynamics;
+- dynamically coupled groundwater flow;
+- complete site-specific salt phase assemblages;
 - deterministic conservation-damage prediction.
 
-The Mohenjo-daro application therefore reports **material exposure and transport behaviour**, rather than direct prediction of physical damage.
+The Mohenjo-daro application therefore reports **material exposure, hygrothermal state, dissolved-sulfate behaviour, and transport response**, rather than direct prediction of physical deterioration.
 
 ---
 
-# Publication release
+# Publication software release
 
-This repository corresponds to:
+The publication software version is:
 
 **Heritage Moisture & Salt Lab v1.5.0**
+
+The frozen release is permanently archived at:
+
+**https://doi.org/10.5281/zenodo.23151541**
 
 The publication bundle consolidates the software lineages used in the Mohenjo-daro study, including:
 
@@ -88,6 +127,7 @@ The publication bundle consolidates the software lineages used in the Mohenjo-da
 - numerical updates developed during model verification;
 - production multi-case execution workflow;
 - checkpoint and restart functionality;
+- long-duration execution utilities;
 - cold-state stability checks;
 - equilibrium water/ice phase extension;
 - AnalysisBridge v1.2.0;
@@ -99,9 +139,47 @@ The publication bundle consolidates the software lineages used in the Mohenjo-da
 - climate-input manifests and QA records;
 - provenance and reproducibility documentation.
 
-The exact archived publication release is available at:
+The GitHub repository can continue to evolve after publication, but the Zenodo v1.5.0 record preserves the exact software release associated with the study.
 
-https://doi.org/10.5281/zenodo.23151541
+---
+
+# Research dataset
+
+The complete research dataset associated with the publication is archived separately as:
+
+**Mohenjo-daro R00–R20 Climate-Material Simulation Dataset**
+
+**Version:** 1.0.0
+
+**DOI:**  
+https://doi.org/10.5281/zenodo.23151771
+
+The published Zenodo dataset contains approximately **862 MB** of research material, including:
+
+- complete hourly R00–R20 simulation archives;
+- core simulation results;
+- annual summary tables;
+- case-level summary tables;
+- supplementary manuscript tables;
+- detailed scientific data tables;
+- prepared climate-forcing archive;
+- climate-forcing manifest;
+- climate-forcing QA;
+- climate-period summaries;
+- locked publication model input set;
+- exact material-definition file used in the simulations;
+- numerical validation evidence;
+- lower-boundary sensitivity evidence;
+- climate-disaggregation validation;
+- provenance records;
+- audit records;
+- upload manifests;
+- SHA-256 checksums;
+- dataset documentation.
+
+The research dataset DOI is:
+
+**https://doi.org/10.5281/zenodo.23151771**
 
 ---
 
